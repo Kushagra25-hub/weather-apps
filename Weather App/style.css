@@ -51,7 +51,6 @@ body {
   border: 1px solid var(--border);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   /* backdrop-filter: var(--blur); */
-
   text-align: center;
   z-index: 1;
 }
@@ -109,4 +108,62 @@ body.light .background-text {
 
 body.dark .background-text {
   color: rgba(255, 255, 255, 0.03);
+}
+
+/* Responsive styles for mobile */
+@media (max-width: 480px) {
+  .card {
+    width: 90vw;
+    padding: 20px;
+  }
+
+  .search {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .search input,
+  .search button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .mode-toggle {
+    padding: 8px;
+    font-size: 18px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .background-text {
+    font-size: 2.5rem;
+  }
+}
+
+/* Revert styles for wider screens */
+@media (min-width: 481px) {
+  .card {
+    width: 330px;
+    padding: 30px;
+  }
+
+  .search {
+    flex-direction: row;
+  }
+
+  .search input,
+  .search button {
+    width: auto;
+  }
+
+  .mode-toggle {
+    padding: 10px;
+    font-size: 20px;
+    top: 15px;
+    right: 15px;
+  }
+
+  .background-text {
+    font-size: 4rem;
+  }
 }
