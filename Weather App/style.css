@@ -1,0 +1,80 @@
+:root {
+  --card-bg: rgba(255,255,255,0.2);
+  --blur: blur(15px);
+  --border: rgba(255,255,255,0.5);
+  --text: #000;
+  --btn-bg: rgba(255,255,255,0.4);
+}
+
+body.dark {
+  --card-bg: rgba(0,0,0,0.2);
+  --border: rgba(255,255,255,0.3);
+  --text: #fff;
+  --btn-bg: rgba(0,0,0,0.4);
+  background: linear-gradient(135deg,#000428,#004e92);
+}
+
+body.light {
+  background: linear-gradient(135deg,#89f7fe,#0c3b28);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin:0;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--text);
+}
+
+.mode-toggle {
+  position: absolute;
+  top:15px;
+  right:15px;
+  padding:10px;
+  border-radius:50%;
+  background: var(--btn-bg);
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+  backdrop-filter: var(--blur);
+}
+
+.card {
+  width:330px;
+  padding:30px;
+  border-radius:20px;
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  box-shadow:0 8px 32px 0 rgba(31,38,135,0.37);
+  backdrop-filter: var(--blur);
+  text-align:center;
+}
+
+.search {
+  display:flex;
+  margin-bottom:20px;
+  gap:10px;
+}
+
+.search input {
+  flex:1;
+  padding:8px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  backdrop-filter: var(--blur);
+}
+
+.search button {
+  padding:8px 15px;
+  border-radius:12px;
+  border:none;
+  background:#ff7e5f;
+  color:#fff;
+  cursor:pointer;
+}
+
+.hidden {
+  display:none;
+}
