@@ -7,15 +7,26 @@
 }
 
 body.dark {
-  --card-bg: rgba(0, 0, 0, 0.2);
-  --border: rgba(255, 255, 255, 0.3);
-  --text: #fff;
-  --btn-bg: rgba(0, 0, 0, 0.4);
-  background: linear-gradient(135deg, #000428, #004e92);
+  background-image: 
+    url('ReportedB&W.jpg'), /* background image for light mode */
+    linear-gradient(320deg, #000000, #ffffff);
+  /* filter: grayscale(100%); */
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 body.light {
-  background: linear-gradient(320deg, #000000, #ffffff);
+  background-image: 
+    url('Reporter.png'), /* background image for light mode */
+    linear-gradient(320deg, #000000, #ffffff);
+  filter: grayscale(0%);
+  background-size: cover;
+  backdrop-filter: blur(2px);
+  background-repeat: no-repeat;
+  background-position: center;
+
 }
 
 body {
@@ -53,7 +64,16 @@ body {
   /* backdrop-filter: var(--blur); */
   text-align: center;
   z-index: 1;
+  /* transition: transform 0.2s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+   */
 }
+
+.card:hover {
+  box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+}
+
 
 .search {
   display: flex;
@@ -76,6 +96,7 @@ body {
   background: #ff7e5f;
   color: #fff;
   cursor: pointer;
+  filter: grayscale(0%);
 }
 
 .hidden {
