@@ -2,33 +2,155 @@
   --card-bg: rgba(255, 255, 255, 0.2);
   --blur: blur(15px);
   --border: rgba(255, 255, 255, 0.5);
-  --text: #000;
   --btn-bg: rgba(255, 255, 255, 0.4);
+  --text-dark: #000;
+  --text-light: #f5f5f5;
 }
 
-body.dark {
-  background-image: 
-    url('ReportedB&W.jpg'), /* background image for light mode */
-    linear-gradient(320deg, #000000, #ffffff);
-  /* filter: grayscale(100%); */
-  background-size: cover;
-  backdrop-filter: blur(2px);
-  background-repeat: no-repeat;
-  background-position: center;
+/* 🌞 Sunny */
+body.sunny {
+  background: linear-gradient(120deg, #a1c4fd, #c2e9fb, #f9f7d9);
+  background-size: 400% 400%;
+  animation: dayGradient 15s ease infinite;
+  color: var(--text-dark);
+  overflow: hidden;
 }
 
-body.light {
-  background-image: 
-    url('Reporter.png'), /* background image for light mode */
-    linear-gradient(320deg, #000000, #ffffff);
-  filter: grayscale(0%);
-  background-size: cover;
-  backdrop-filter: blur(2px);
-  background-repeat: no-repeat;
-  background-position: center;
-
+body.sunny::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle at 30% 20%, rgba(255, 223, 0, 0.3), transparent 60%);
+  animation: sunlight 10s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
 }
 
+/* ☁️ Cloudy */
+body.cloudy {
+  background: linear-gradient(120deg, #d7d2cc, #304352);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+body.cloudy::before {
+  content: "";
+  position: absolute;
+  top: -50px; left: -100px;
+  width: 200%; height: 200%;
+  /* background: url("https://i.ibb.co/dQmLvZy/cloud.png") repeat-x; */
+  background-size: 500px auto;
+  animation: clouds 60s linear infinite;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 🌧️ Rainy */
+body.rainy {
+  background: linear-gradient(120deg, #2c3e50, #4ca1af);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+body.rainy::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.15));
+  background-size: 2px 40px;
+  animation: rain 0.5s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 🌩️ Storm */
+body.storm {
+  background: linear-gradient(120deg, #141e30, #243b55);
+  color: var(--text-light);
+  overflow: hidden;
+}
+
+body.storm::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: linear-gradient(transparent, rgba(255, 255, 255, 0.2));
+  background-size: 2px 40px;
+  animation: rain 0.4s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.storm::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  opacity: 0;
+  animation: lightning 7s infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ❄️ Snow */
+body.snow {
+  background: linear-gradient(120deg, #83a4d4, #b6fbff);
+  color: var(--text-dark);
+  overflow: hidden;
+}
+
+body.snow::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url("https://i.ibb.co/YbX1L6S/snow.png");
+  background-size: 200px auto;
+  animation: snow 10s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* === Animations === */
+@keyframes dayGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes clouds {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
+@keyframes rain {
+  from { background-position: 0 0; }
+  to { background-position: 0 40px; }
+}
+
+@keyframes lightning {
+  0%, 97%, 100% { opacity: 0; }
+  98% { opacity: 0.8; }
+  99% { opacity: 0; }
+}
+
+@keyframes snow {
+  from { background-position: 0 0; }
+  to { background-position: 0 100px; }
+}
+
+@keyframes sunlight {
+  0% { opacity: 0.15; transform: scale(1); }
+  100% { opacity: 0.3; transform: scale(1.1); }
+}
+
+/* === Card, Buttons, etc. === */
 body {
   font-family: "Poppins", sans-serif;
   margin: 0;
@@ -36,22 +158,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
   position: relative;
   overflow: hidden;
-}
-
-.mode-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  padding: 10px;
-  border-radius: 50%;
-  background: var(--btn-bg);
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  backdrop-filter: var(--blur);
 }
 
 .card {
@@ -60,19 +168,18 @@ body {
   border-radius: 20px;
   background: var(--card-bg);
   border: 1px solid var(--border);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  /* backdrop-filter: var(--blur); */
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
   text-align: center;
-  z-index: 1;
+  z-index: 2;
   transition: transform 0.2s ease;
   will-change: transform;
-  
+  backdrop-filter: var(--blur);
 }
 
 .card:hover {
   box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
 }
-
 
 .search {
   display: flex;
@@ -95,95 +202,4 @@ body {
   background: #ff7e5f;
   color: #fff;
   cursor: pointer;
-  filter: grayscale(0%);
-}
-
-.hidden {
-  display: none;
-}
-
-/* 🔥 Glossy Background Watermark */
-.background-text {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotate(-30deg);
-  font-size: 4rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  white-space: nowrap;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-  mix-blend-mode: unset;
-  backdrop-filter: blur(2px);
-  color: rgba(243, 37, 37, 0.07);
-}
-
-/* Optional: Theme-specific tweaks */
-body.light .background-text {
-  color: rgba(255, 255, 255, 0.08);
-}
-
-body.dark .background-text {
-  color: rgba(255, 255, 255, 0.03);
-}
-
-/* Responsive styles for mobile */
-@media (max-width: 480px) {
-  .card {
-    width: 90vw;
-    padding: 20px;
-  }
-
-  .search {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .search input,
-  .search button {
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .mode-toggle {
-    padding: 8px;
-    font-size: 18px;
-    top: 10px;
-    right: 10px;
-  }
-
-  .background-text {
-    font-size: 2.5rem;
-  }
-}
-
-/* Revert styles for wider screens */
-@media (min-width: 481px) {
-  .card {
-    width: 330px;
-    padding: 30px;
-  }
-
-  .search {
-    flex-direction: row;
-  }
-
-  .search input,
-  .search button {
-    width: auto;
-  }
-
-  .mode-toggle {
-    padding: 10px;
-    font-size: 20px;
-    top: 15px;
-    right: 15px;
-  }
-
-  .background-text {
-    font-size: 4rem;
-  }
 }
