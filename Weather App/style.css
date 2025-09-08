@@ -14,6 +14,7 @@ body.sunny {
   animation: dayGradient 15s ease infinite;
   color: var(--text-dark);
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 body.sunny::before {
@@ -32,6 +33,7 @@ body.cloudy {
   background: linear-gradient(120deg, #d7d2cc, #304352);
   color: var(--text-light);
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 body.cloudy::before {
@@ -39,7 +41,6 @@ body.cloudy::before {
   position: absolute;
   top: -50px; left: -100px;
   width: 200%; height: 200%;
-  /* background: url("https://i.ibb.co/dQmLvZy/cloud.png") repeat-x; */
   background-size: 500px auto;
   animation: clouds 60s linear infinite;
   opacity: 0.5;
@@ -52,6 +53,7 @@ body.rainy {
   background: linear-gradient(120deg, #2c3e50, #4ca1af);
   color: var(--text-light);
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 body.rainy::before {
@@ -71,6 +73,7 @@ body.storm {
   background: linear-gradient(120deg, #141e30, #243b55);
   color: var(--text-light);
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 body.storm::before {
@@ -102,6 +105,7 @@ body.snow {
   background: linear-gradient(120deg, #83a4d4, #b6fbff);
   color: var(--text-dark);
   overflow: hidden;
+  background-attachment: fixed;
 }
 
 body.snow::before {
@@ -202,4 +206,29 @@ body {
   background: #ff7e5f;
   color: #fff;
   cursor: pointer;
+}
+
+/* 📱 Mobile Responsive Fix */
+@media (max-width: 600px) {
+  body.sunny,
+  body.cloudy,
+  body.rainy,
+  body.storm,
+  body.snow {
+    background-size: 200% 200%; /* shrink gradients so they don’t cut */
+  }
+
+  .card {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .search {
+    flex-direction: column;
+  }
+
+  .search input, 
+  .search button {
+    width: 100%;
+  }
 }
